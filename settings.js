@@ -19,6 +19,7 @@ var serverSettings = {
     DB_USER: process.env.DB_USER || 'root',
     DB_MYSQL_PASSWORD: process.env.DB_PASSWORD || 'Param@2611',
     DB_CONNECTION_LIMIT: 10,
-    
+    JWT_PRIVATE_KEY: process.env.JWT_PRIVATE_KEY || 'ItsaNamaZoncLONE!!!!!',
+    CRYPTO_KEY: process.env.CRYPTO_KEY,
 }
 module.exports = serverSettings

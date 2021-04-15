@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registerRouter = require('./routes/register');
 var signupRouter = require('./routes/signup')
+var loginRouter = require('./routes/login');
+const loginUser = require('./lib/auth/loginUser');
 
 var app = express();
 
@@ -26,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/register', registerRouter);
+app.use('/login', loginRouter);
 //app.use('/login', loginRouter);
 //app.use('/genOTP', otpRouter);
 app.use('/signup', signupRouter);
