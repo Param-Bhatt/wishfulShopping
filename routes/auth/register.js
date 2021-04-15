@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const settings = require('../settings.js')
+const settings = require('../../settings.js')
 const path = require('path');
 const { resolve } = require('path');
 const { rejects } = require('assert');
@@ -13,25 +13,20 @@ const response = require(path.join(
   'response.js'
 ))
 
-/*
-mongoose.connect(`mongodb+srv://${settings.DB_NAME}:${settings.DB_PASSWORD}@cluster0.rz4zi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {useNewUrlParser: true});
-mongoose.connection.once('open',function(){
-  console.log('Database connected Successfully');
-}).on('error',function(err){
-  console.log('Error', err);
-})
-*/
-router.get('/', (req, res, next) => {
-    /*console.log(req.body)
-    registerUser(req.body.email, req.body.password, req.body.firstName, req.body.lastName, req.body.mobile, req.body.userType)
+router.post('/', (req, res, next) => {
+    console.log(req.body)
+    registerUser(req.body.email, req.body.name, req.body.userType)
         .then((result) => {
-            response.created(result, {}, 'Registered successfully', false)
+          if(result === 1){
+            response.created(res, {}, 'Registered successfully', false)
+          }else{
+            response.error(res);
+          }
         })
         .catch((err) => {
             console.log(err)
             err.message = 'Error in registering';
             return next(err);
-        })*/
-    res.send(settings.GMAIL_USER);
+        })
 })
 module.exports = router;

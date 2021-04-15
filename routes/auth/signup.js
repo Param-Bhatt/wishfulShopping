@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const settings = require('../settings.js')
+const settings = require('../../settings.js')
 const path = require('path');
 const { resolve } = require('path');
 const { rejects } = require('assert');
