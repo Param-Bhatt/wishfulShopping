@@ -17,7 +17,7 @@ router.post('/', (req, res, next) => {
     console.log(req.body)
     registerUser(req.body.email, req.body.name, req.body.userType)
         .then((result) => {
-          if(result === 1){
+          if(result){
             response.created(res, {}, 'Registered successfully', false)
           }else{
             response.error(res);
