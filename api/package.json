@@ -1,0 +1,32 @@
+{
+  "name": "wishfulshopping",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "child_process": "^1.0.2",
+    "cookie-parser": "~1.4.4",
+    "crypto": "^1.0.1",
+    "debug": "~2.6.9",
+    "dot-env": "^0.0.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "~4.16.1",
+    "express-validator": "^6.10.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "js-base64": "^3.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.3",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.5.0",
+    "path": "^0.12.7",
+    "random-js": "^2.1.0"
+  }
+}
