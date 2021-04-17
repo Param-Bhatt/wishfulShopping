@@ -4,5 +4,6 @@ const router = require('express').Router()
 router.use('/signup/', require('./signup.js'))
 router.use('/login/', require('./login.js'))
 router.use('/register', require('./register.js'))
+router.use('/reset', require('./resetPassword.js'))
 
 module.exports = router

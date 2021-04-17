@@ -7,6 +7,7 @@ var serverSettings = {
     PROJECT_DIR: __dirname,
     PROJECT_LIB: lib,
     PORT : process.env.PORT,
+    HOST_NAME: process.env.HOST_NAME || "localhost:5000",
     MAIL_USER : 'padb19122000@gmail.com',
     MAIL_PASSWORD : 'paramforever19',
     MAIL_OAUTH_CLIENT_ID : '493047262649-qbjgnecqikv8dpotldphijf1u0el1hhk.apps.googleusercontent.com',
