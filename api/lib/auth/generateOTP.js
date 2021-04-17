@@ -8,6 +8,7 @@ const mongoQuery = require(path.join(settings.PROJECT_LIB, 'database', 'query.js
 const Database = require(path.join(settings.PROJECT_LIB, 'mysql_db', 'database.js'))
 const database = new Database('users')
 const insertLogin = require(path.join(settings.PROJECT_LIB, 'auth', 'insertLogin.js'))
+const pwd = require(path.join(settings.PROJECT_LIB, 'crypto', 'password.js'))
 
 var generateOTP = (email, password) => {
     return new Promise((resolve, reject) => {
@@ -46,16 +47,22 @@ var generateOTP = (email, password) => {
             .then((result) => {
                 if(result.length != 1){
                     /*First time user, add his details*/
-                    insertLogin(email, password, OTP)
-                    .then((result) => {
-                        if(result){
-                            resolve(1)
-                        }else{
-                            reject(result)
-                        }
+                    pwd.hash(password)
+                    .then((hash) => {
+                        insertLogin(email, hash, OTP)
+                        .then((result) => {
+                            if(result){
+                                resolve(1)
+                            }else{
+                                reject(result)
+                            }
+                        }).catch((e) => {
+                            reject(e)
+                        })
                     }).catch((e) => {
                         reject(e)
                     })
+                    
                 }
                 else{
                     /*Just update OTP and verify it*/

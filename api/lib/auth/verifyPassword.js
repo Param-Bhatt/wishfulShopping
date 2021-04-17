@@ -8,22 +8,27 @@ const verifyPassword = (email, password) => {
     var sql = null
     var params = null
     return new Promise((resolve, reject) => {
-        sql = 'SELECT * from users where email = ?'
-        params = [email]
-        database.call(sql, params)
-        .then((result) => {
-            pwd.compare(password, result[0].password)
-            .then((match) => {
-                if(match==1){
-                    resolve(1)
-                }else{
-                    resolve(1)
-                }
-            }).catch((err) => {
-                reject(err)
+        pwd.hash(password)
+        .then((hash) => {    
+            sql = 'SELECT * from users where email = ?'
+            params = [email]
+            database.call(sql, params)
+            .then((result) => {
+                pwd.compare(hash, result[0].password)
+                .then((match) => {
+                    if(match==1){
+                        resolve(1)
+                    }else{
+                        resolve(1)
+                    }
+                }).catch((err) => {
+                    reject(err)
+                })
+            }).catch((e) => {
+                reject(e)
             })
-        }).catch((e) => {
-            reject(e)
+        }).catch((err) => {
+            reject(err)
         })
     })
 }

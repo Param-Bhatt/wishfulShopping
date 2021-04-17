@@ -6,16 +6,18 @@ const Database = require(path.join(settings.PROJECT_LIB, 'mysql_db', 'database.j
 const database = new Database('users')
 const firstEnter = require(path.join(settings.PROJECT_LIB, 'auth','firstEnter.js'))
 var verifyOTP = (email, reqOTP) => {
+    var sql = null
+    var params= null
     return new Promise((resolve, reject) =>{
-        var sql = "SELECT otp from users where email = ? LIMIT 1;"
-        var params = [email]
+        sql = "SELECT otp from users where email = ? LIMIT 1;"
+        params = [email]
         database.call(sql, params)
         .then((result) => {
             if(result[0].otp == reqOTP){
                 console.log("Verified OTP")
-                var inner_sql = "SELECT * from userInfo where email = ? LIMIT 1;"
-                var inner_params = [email]
-                database.call(inner_sql, inner_params)
+                sql = "SELECT * from userInfo where email = ? LIMIT 1;"
+                params = [email]
+                database.call(sql, params)
                 .then((result) => {
                     if(result.length != 1){
                         /*name not present, this is first time signup*/
