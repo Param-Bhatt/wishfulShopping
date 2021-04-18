@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
       response.unprocessable(res)
     } else {
       resetPassword
-        .sendResetMail(req.query.email)
+        .sendResetMail(req.body.email)
         .then((result) => {
           if (result === 1) {
             response.created(res, {}, 'Password reset mail sent', false)
@@ -64,6 +64,9 @@ router.post(
     if (!errors.isEmpty()) {
     response.unprocessable(res)
     } else {
+      console.log(req.body.email)
+      console.log(req.body.reset_token)
+      console.log(req.body.npassword)
     resetPassword
         .changePassword(req.body.email, req.body.reset_token, req.body.npassword)
         .then((result) => {

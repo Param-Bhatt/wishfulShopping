@@ -34,6 +34,7 @@ var sendResetMail = (email) => {
     var sql = null
     var params = null
     const database = new Database('users')
+    console.log(email)
     return new Promise ((resolve, reject) => {
         genToken()
         .then((token) => {
@@ -110,6 +111,7 @@ var changePassword = (email, token, password) => {
         database.call(sql, params)
         .then((result) => {
             if (result.length === 1 && result[0].reset_token === token){
+                console.log("Hello")
                 pwd
                 .hash(password)
                 .then((hash) => {

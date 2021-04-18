@@ -107,6 +107,7 @@ const checkAuth = (req, res, next) => {
     }
     email = (email != null && email.length >= 2) ? email : ' '
     password = (password != null && password.length >= 5) ? password : ' '
+	console.log("Email : " + email.length + "  " + password.length)
 	if (password.length >= 5 && email.length >= 2) {
 		req.email = email
         next()    
