@@ -25,6 +25,7 @@ var loginUser = (email, password, type = 0) => {
                         if(result.length === 1){
                             data.name = result[0].name
                             data.role = result[0].userType
+                            console.log(data)
                             resolve(data)
                         }else{
                             data.name = ' '

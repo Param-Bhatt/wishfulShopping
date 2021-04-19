@@ -41,9 +41,10 @@ const getUserToken = (email, type = 0, time = ACCESS_TOKEN_EXPIRY) => {
 const verifyUserToken = (token) => {
     /* First do verification using access_token, then fallback to refresh_token otherwise send 401 */
     return new Promise ((resolve, reject) => {
-        jwt.verify(token, settings.JWT_PRIVATE_KEY, (err, decoded) => {
+		jwt.verify(token, settings.JWT_PRIVATE_KEY, (err, decoded) => {
             if(err){
-                /* Falling back to refresh tokens for web and sending 401 for apps */
+				/* Falling back to refresh tokens for web and sending 401 for apps */
+				console.log(err)
                 try {
 					var payload = token.split('.')[1]
 					payload = Base64.decode(payload)
@@ -55,6 +56,7 @@ const verifyUserToken = (token) => {
 						resolve([0])
 						return
 					}
+					console.log(payload)
 					refreshToken.verify(payload.email, payload.rt)
 						.then((valid) => {
 							if (valid === 1) {
@@ -99,13 +101,14 @@ const checkAuth = (req, res, next) => {
     var email = null
     var password = null
     if(req.method == "POST"){
+		console.log(req.body)
         email = req.body.email
-        password = req.body.password
+		password = req.body.password
     }else{
         email = req.query.email
         password = req.query.password
     }
-    email = (email != null && email.length >= 2) ? email : ' '
+	email = (email != null && email.length >= 2) ? email : ' '
     password = (password != null && password.length >= 5) ? password : ' '
 	console.log("Email : " + email.length + "  " + password.length)
 	if (password.length >= 5 && email.length >= 2) {

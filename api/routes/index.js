@@ -17,13 +17,13 @@ router.use('/api/auth/', require('./auth'))
 
 /* Place all token protected resources here */
 router.use('/', [
-  check('uid').trim().escape(),
+  check('email').trim().escape(),
   check('password').trim().escape()
 ], checkAuth)
 /* TOKEN PROTECTED RESOURCES */
 router.use('/api/token/check', (req, res) => {
   response.success(res)
 })
-
+router.use('/api/usr/', require('./usr'))
 
 module.exports = router;
