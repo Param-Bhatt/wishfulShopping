@@ -28,24 +28,25 @@ router.post('/', (req, res, next) => {
     if (!errors.isEmpty()) {
       response.unprocessable(res)
     }else{
-        console.log(req.body)
-      loginUser(req.body.email, req.body.password, req.body.type)
-      .then((result) => {
-        if(result !=0){
-          res.set('Access-Control-Expose-Headers', '*')
-            // res.cookie('bearer_token', result.token, {secure : true, httpOnly : true});
-            res.set('Authorization', `Bearer ${result.token}`)
-            response.success(res, {
-              name: result.name,
-              role: result.role,
-            })
-        }else {
-          response.unauthorized(res, {}, 'Incorrect User ID/password', true)
-        }
-      }).catch((e) => {
-          e.status = 401
-          return next(e)
-      })
+      console.log(req.body)
+      loginUser
+        .loginUser(req.body.email, req.body.password, req.body.type)
+        .then((result) => {
+          if(result !=0){
+            res.set('Access-Control-Expose-Headers', '*')
+              // res.cookie('bearer_token', result.token, {secure : true, httpOnly : true});
+              res.set('Authorization', `Bearer ${result.token}`)
+              response.success(res, {
+                name: result.name,
+                role: result.role,
+              })
+          }else {
+            response.unauthorized(res, {}, 'Incorrect User ID/password', true)
+          }
+        }).catch((e) => {
+            e.status = 401
+            return next(e)
+        })
     }
 })
 

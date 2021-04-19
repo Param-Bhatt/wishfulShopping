@@ -18,6 +18,7 @@
     "ejs": "^3.1.6",
     "express": "~4.16.1",
     "express-validator": "^6.10.0",
+    "googleapis": "^71.0.0",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "js-base64": "^3.6.0",
@@ -27,6 +28,7 @@
     "mysql": "^2.18.1",
     "nodemailer": "^6.5.0",
     "path": "^0.12.7",
+    "query-string": "^7.0.0",
     "random-js": "^2.1.0"
   }
 }

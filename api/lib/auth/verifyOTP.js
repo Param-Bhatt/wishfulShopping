@@ -5,9 +5,12 @@ const User = require(path.join(settings.PROJECT_LIB, 'models', 'users.js'))
 const Database = require(path.join(settings.PROJECT_LIB, 'mysql_db', 'database.js'))
 const database = new Database('users')
 const firstEnter = require(path.join(settings.PROJECT_LIB, 'auth','firstEnter.js'))
+var userToken = require(path.join(settings.PROJECT_LIB, 'auth', 'userToken.js'))
+
 var verifyOTP = (email, reqOTP) => {
     var sql = null
     var params= null
+    var data = {}
     return new Promise((resolve, reject) =>{
         sql = "SELECT otp from users where email = ? LIMIT 1;"
         params = [email]
@@ -24,7 +27,14 @@ var verifyOTP = (email, reqOTP) => {
                         firstEnter(email)
                         .then((result) => {
                             if(result === 1){
-                                resolve(1)
+                                userToken.get(email, type)
+                                .then((token) => {
+                                    data.token = token
+                                    data.email = email
+                                    resolve(data)
+                                }).catch((err) => {
+                                    reject(err)
+                                })
                             }else{
                                 reject(result)
                             }

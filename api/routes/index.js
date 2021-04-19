@@ -13,7 +13,6 @@ const checkAuth = require(path.join(settings.PROJECT_LIB, 'auth', 'userToken.js'
 const response = require(path.join(settings.PROJECT_LIB, 'response', 'response.js'))
 
 router.use('/api/auth/', require('./auth'))
-
 /* UNPROTECTED RESOURCES HERE */
 
 /* Place all token protected resources here */

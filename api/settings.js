@@ -14,6 +14,7 @@ var serverSettings = {
     MAIL_OAUTH_CLIENT_SECRET : 'JEF6225yBUepYwxZgbfk3y-R',
     MAIL_OAUTH_REFRESH_TOKEN : '1//04f2avedAT99jCgYIARAAGAQSNwF-L9Ir-ofixisUWll6dEvBa8gh94oDuqWqR0MJmY0a4Uu13mrd4wS4azhjzJyaKLoA45WvhGg',
     MAIL_OAUTH_ACCESS_TOKEN : 'ya29.a0AfH6SMAw7V3ftZqjsCw82DQkBhgreSgagFeUaT-FyzKy5-GpX9rZncuuNXjnrHZa-eXy1loDMNSkTNO_aLorl2WYnloHtmRpzXT-Te4F907t1z7L92ke1mIZHFQE_1FQFzWHs04gpHfiu2PM8jtgKmdetIXs',
+    MAIL_AUTH_REDIRECT : 'http://localhost:5000/api/auth/gLogin/callback', 
     DB_NAME : 'pabby',
     DB_PASSWORD : 'paramforever19',
     DB_HOST: process.env.DB_HOST || 'localhost',

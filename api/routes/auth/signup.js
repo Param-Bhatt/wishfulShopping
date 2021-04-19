@@ -34,7 +34,7 @@ router.get('/', (req, res, next) => {
     console.log(req.body);
     verifyOTP(req.body.email, req.body.otp)
     .then((result) => {
-        if(result === 1){
+        if(result){
             response.created(res, {}, 'OTP verified successfully', false)
         }
         else{
