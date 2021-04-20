@@ -25,5 +25,5 @@ router.use('/api/token/check', (req, res) => {
   response.success(res)
 })
 router.use('/api/usr/', require('./usr'))
-
+router.use('/api/items', require('./items'))
 module.exports = router;

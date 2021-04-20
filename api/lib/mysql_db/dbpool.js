@@ -11,15 +11,15 @@ const pool_users = mysql.createPool({
   password: settings.DB_MYSQL_PASSWORD,
   database: 'users',
   multipleStatements: true
-})/*
-const pool_mess = mysql.createPool({
+})
+const pool_items = mysql.createPool({
   connectionLimit: settings.DB_CONNECTION_LIMIT,
   host: settings.DB_HOST,
   user: settings.DB_USER,
-  password: settings.DB_PASSWORD,
-  database: 'mess',
+  password: settings.DB_MYSQL_PASSWORD,
+  database: 'items',
   multipleStatements: true
-})
+})/*
 const pool_docs = mysql.createPool({
   connectionLimit: settings.DB_CONNECTION_LIMIT,
   host: settings.DB_HOST,
@@ -30,5 +30,5 @@ const pool_docs = mysql.createPool({
 })*/
 
 module.exports.users = pool_users
-//module.exports.mess = pool_mess
+module.exports.items = pool_items
 //module.exports.docs = pool_docs

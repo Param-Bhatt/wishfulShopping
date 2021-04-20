@@ -6,9 +6,9 @@ class Database {
     this.dbName = dbName
     if (dbName == 'users') {
       this.pool = require('./dbpool.js').users
-    } /*else if (dbName == 'mess') {
-      this.pool = require('./dbpool.js').mess
-    } else if (dbName == 'docs') {
+    } else if (dbName == 'items') {
+      this.pool = require('./dbpool.js').items
+    }/* else if (dbName == 'docs') {
       this.pool = require('./dbpool.js').docs
     }*/
   }
