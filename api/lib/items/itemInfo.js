@@ -3,7 +3,6 @@ const { fileURLToPath } = require('url');
 const settings = require('../../settings')
 const Database = require(path.join(settings.PROJECT_LIB, 'mysql_db', 'database.js'))
 const items_database = new Database('items')
-const users_database = new Database('users')
 var itemInfo = (name) => {
     var sql = null
     var params = null
