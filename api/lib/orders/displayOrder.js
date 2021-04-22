@@ -5,19 +5,18 @@ const settings = require('../../settings')
 const Database = require(path.join(settings.PROJECT_LIB, 'mysql_db', 'database.js'))
 const users_database = new Database('users')
 const item_database = new Database('items')
-const date = new Date()
 const sendEmail = require(path.join(settings.PROJECT_LIB, 'mailer','mailer.js'))
 
-var cancelOrder = (userEmail, orderID) => {
+var displayOrder = (userEmail) => {
     var sql = null
     var params = null
     return new Promise((resolve, reject) => {
-        sql = 'DELETE from orders where customerEmail = ? AND orderID = ?'
-        params = [userEmail, orderID]
+        sql = 'SELECT * from orders where customerEmail = ?'
+        params = [userEmail]
         item_database.call(sql, params)
         .then((result) => {
-            if(result.affectedRows === 1){
-                resolve(1)
+            if(result.length > 0){
+                resolve([1, result])
             }else{
                 resolve([0, result])
             }
@@ -27,4 +26,4 @@ var cancelOrder = (userEmail, orderID) => {
     })
 }
 
-module.exports = cancelOrder
+module.exports = displayOrder

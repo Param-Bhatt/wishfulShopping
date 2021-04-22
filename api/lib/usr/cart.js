@@ -25,11 +25,13 @@ var addToCart = (email, item, quantity) => {
     var sql = null
     var params = null
     return new Promise((resolve, reject) => {
-        sql = 'SELECT quantity from items where id = ?'
+        sql = 'SELECT itemQuantity from items where id = ?'
         params = [item]
         item_database.call(sql, params)
         .then((res) => {
-            if(res.quantity >= quantity){
+            console.log(res[0].itemQuantity)
+            console.log(res.itemQuantity + " " + quantity)
+            if(res[0].itemQuantity >= quantity){
             sql = 'SELECT * FROM cart where userEmail = ? AND itemID = ?'
             params = [email, item]
             users_database.call(sql, params)
@@ -78,11 +80,11 @@ var updateCart = (email, item, quantity) => {
     var sql = null
     var params = null
     return new Promise((resolve, reject) => {
-        sql = 'SELECT quantity from items where id = ?'
+        sql = 'SELECT itemQuantity from items where id = ?'
         params = [item]
         item_database.call(sql, params)
         .then((res) => {
-            if(res.quantity >= quantity){
+            if(res[0].itemQuantity >= quantity){
                 sql = 'UPDATE cart set quantity = ? where itemID = ? AND userEmail = ?'
                 params = [quantity, item, email]
                 users_database.call(sql, params)
