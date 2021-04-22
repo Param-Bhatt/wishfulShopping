@@ -1,3 +1,4 @@
+const { response } = require('express');
 const path = require('path');
 const { fileURLToPath } = require('url');
 const settings = require('../../settings')
@@ -60,20 +61,29 @@ var placeOrder = (email) => {
                                         if(res3 !== 1){
                                             resolve([0, res3])
                                         }else{
-                                            data.push(currData)
-                                            sql = 'DELETE from cart where itemID = ? AND userEmail = ?'
-                                            params = [currData.itemID, currData.customerEmail]
-                                            users_database.call(sql, params)
-                                            .then((res4) => {
-                                                if(res4.affectedRows === 1){
-                                                    console.log("HErrrrrr")
-                                                    currData.err = "false"
-                                                    resolve([1,currData])
+                                            sendEmail(currData.sellerEmail, 'New order placed', `A new order for item ${currData.itemName} of quantity ${currData.quantity} has been placed. Please deliver the order to ${currData.customerAddress}, to Customer : ${currData.customerEmail}`)
+                                            .then((res5) => {
+                                                if(res5 ===1){
+                                                    data.push(currData)
+                                                    sql = 'DELETE from cart where itemID = ? AND userEmail = ?'
+                                                    params = [currData.itemID, currData.customerEmail]
+                                                    users_database.call(sql, params)
+                                                    .then((res4) => {
+                                                        if(res4.affectedRows === 1){
+                                                            console.log("HErrrrrr")
+                                                            currData.err = "false"
+                                                            resolve([1,currData])
+                                                        }else{
+                                                            resolve([0, res4])
+                                                        }
+                                                    }).catch((e4) => {
+                                                        reject(e4)
+                                                    })
                                                 }else{
-                                                    resolve([0, res4])
+                                                    resolve([0,res5])
                                                 }
-                                            }).catch((e4) => {
-                                                reject(e4)
+                                            }).catch((e5) => {
+                                                reject(e5)
                                             })
                                             
                                         }
