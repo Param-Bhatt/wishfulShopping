@@ -26,4 +26,5 @@ router.use('/api/token/check', (req, res) => {
 })
 router.use('/api/usr/', require('./usr'))
 router.use('/api/items', require('./items'))
+router.use('/api/orders', require('./orders'))
 module.exports = router;

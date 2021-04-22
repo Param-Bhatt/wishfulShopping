@@ -14,7 +14,7 @@ var addItem = (name, descr, price,email, qut) => {
         .then((res) => {
             if(res.userType != 'shopper'){
                 console.log(res)
-                sql = 'INSERT into items (name, description, price, sellerEmail, quantity) VALUES (?,?,?,?,?)'
+                sql = 'INSERT into items (itemName, description, price, sellerEmail, itemQuantity) VALUES (?,?,?,?,?)'
                 params = [name, descr, price, email, qut]
                 database.call(sql, params)
                 .then((result) => {

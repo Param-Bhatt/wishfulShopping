@@ -18,8 +18,8 @@ var itemInfo = (name) => {
                     currData.name = name
                     currData.sellerEmail = row.sellerEmail
                     currData.price = row.price
-                    currData.quantity = row.quantity
-                    currData.seller = row.name
+                    currData.quantity = row.itemQuantity
+                    currData.seller = row.itemName
                     currData.sellerAddress = row.address
                     data.push(currData)
                 }

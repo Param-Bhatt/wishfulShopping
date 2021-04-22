@@ -14,7 +14,7 @@ var removeItem = (name, price) => {
         users_database.call(sql, params)
         .then((res) => {
             if(res.userType != 'shopper'){
-                sql = 'DELETE from items where name = ? AND price = ? and sellerEmail = ?'
+                sql = 'DELETE from items where itemName = ? AND price = ? and sellerEmail = ?'
                 params = [name, price, res.userType]
                 database.call(sql, params)
                 .then((result) => {

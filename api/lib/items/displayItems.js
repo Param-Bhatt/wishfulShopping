@@ -8,7 +8,7 @@ var displayItems = () => {
     var sql = null
     var params = null
     return new Promise((resolve, reject) => {
-        sql = 'SELECT id, name, category, price from items where quantity > 0'
+        sql = 'SELECT id, itemName, category, price from items where quantity > 0'
         params = []
         database.call(sql, params)
         .then((result) => {
