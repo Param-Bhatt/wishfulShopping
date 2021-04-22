@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 20, 2021 at 07:49 PM
+-- Generation Time: Apr 22, 2021 at 10:38 PM
 -- Server version: 8.0.23-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -30,10 +30,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `items` (
   `id` int NOT NULL,
-  `name` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `itemName` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `category` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `description` varchar(80) DEFAULT NULL,
-  `quantity` int NOT NULL,
+  `itemQuantity` int NOT NULL,
   `price` int DEFAULT NULL,
   `sellerEmail` varchar(80) DEFAULT NULL,
   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -43,9 +43,10 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `category`, `description`, `quantity`, `price`, `sellerEmail`, `updatedAt`) VALUES
-(3, 'guava', 'fruit', NULL, 1, 1, 'padb19122000@gmail.com', '2021-04-19 23:00:09'),
-(5, 'kiwi', 'fruit', NULL, 20, 100, 'padb19122000@gmail.com', '2021-04-20 13:37:01');
+INSERT INTO `items` (`id`, `itemName`, `category`, `description`, `itemQuantity`, `price`, `sellerEmail`, `updatedAt`) VALUES
+(3, 'guava', 'fruit', NULL, 90, 1, 'padb19122000@gmail.com', '2021-04-19 23:00:09'),
+(5, 'kiwi', 'fruit', NULL, 20, 100, 'padb19122000@gmail.com', '2021-04-20 13:37:01'),
+(6, 'kiwi', 'fruit', NULL, 190, 1000, 'f2k@gmail.com', '2021-04-20 16:01:41');
 
 --
 -- Indexes for dumped tables
@@ -65,7 +66,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
